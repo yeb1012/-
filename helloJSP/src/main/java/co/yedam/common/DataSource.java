@@ -14,7 +14,7 @@ public class DataSource {
 	
 	private static String driver = "oracle.jdbc.OracleDriver";
 	private static String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static String user = "hr";
+	private static String user = "c##cafe";
 	private static String password = "1234";
 	
 	private static Connection conn;

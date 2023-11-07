@@ -2,9 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
- #list span{
- margin:4px;}
-</style>	
+#list span {
+	margin: 4px;
+}
+</style>
 <%@include file="../layout/menu.jsp"%>
 <%@include file="../layout/header.jsp"%>
 <%
@@ -16,7 +17,7 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 	<table class="table">
 		<tr>
 			<th>글번호</th>
-			<td class ="boardNo"><%=vo.getBoardNo()%></td>
+			<td class="boardNo"><%=vo.getBoardNo()%></td>
 			<th>작성일시</th>
 			<td><%=vo.getWriteDate()%></td>
 		</tr>
@@ -66,16 +67,17 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 </form>
 <h3>댓글 등록</h3>
 <table class="table">
-<tr>
-<th>댓글내용</th>
-<td><input type = "text" id = "content"></td>
-<td><button id = "addReply">댓글등록</button></td>
-</tr>
+	<tr>
+		<th>댓글내용</th>
+		<td><input type="text" id="content"></td>
+		<td><button id="addReply">댓글등록</button></td>
+	</tr>
 </table>
 <h3>댓글목록</h3>
 <ul id="list">
-	<li  style ="display: none;" id = "template"><span>00</span><b>첫번째 글입니다</b><span>replyer</span><span>2023-10-10</span>
-	<button>삭제</button></li>
+	<li style="display: none;" id="template"><span>00</span><b>첫번째
+			글입니다</b><span>user</span><span>2023-10-10</span>
+		<button>삭제</button></li>
 </ul>
 
 <script>
@@ -138,6 +140,12 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 		temp.querySelector('b').innerHTML = reply.reply;
 		temp.querySelector('span:nth-of-type(2)').innerHTML =' ' + reply.replyer;
 		temp.querySelector('span:nth-of-type(3)').innerHTML =' ' + reply.replyDate;
+		temp.querySelector('#template > button').addEventListener('click',function(){
+			fetch('removeReply.do?replyNo='+reply.replyNo)
+			.then(resolve=>{
+				temp.remove();
+				})
+		})
 		return temp;
 	}
 		</script>

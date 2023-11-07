@@ -11,7 +11,7 @@ import co.yedam.reply.service.ReplyService;
 import co.yedam.reply.service.ReplyVO;
 
 public class ReplyServiceImpl implements ReplyService{
-	SqlSession sqlSession = DataSourceMybatis.getInstance().openSession();
+	SqlSession sqlSession = DataSourceMybatis.getInstance().openSession(true);
 	ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
 	@Override
 	public List<ReplyVO> replyList(int boardNo) {
