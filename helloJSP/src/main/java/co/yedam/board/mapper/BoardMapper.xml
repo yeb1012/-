@@ -4,4 +4,32 @@
 	<select id="selectList" resultType="co.yedam.board.service.BoardVO">
 		SELECT * FROM BOARD ORDER BY BOARD_NO
 	</select>
+	<select id="select" resultType="co.yedam.board.service.BoardVO"
+	                    parameterType="int">
+		SELECT * FROM BOARD WHERE BOARD_NO=#{BoardNo}
+	</select>
+	<update id="updateCnt"  parameterType="int">
+	UPDATE BOARD SET VIEW_CNT=VIEW_CNT+1 WHERE BOARD_NO =#{boardNo}
+	</update>
+	<insert id ="insert" parameterType="co.yedam.board.service.BoardVO"> 
+	INSERT INTO BOARD(BOARD_NO, TITLE, CONTENT, WRITER, IMAGE) VALUES(SEQ_BOARD.NEXTVAL,#{title},#{content},#{writer},#{image})
+	</insert>
+	<update id="update" parameterType="co.yedam.board.service.BoardVO">
+	UPDATE BOARD SET TITLE = #{title}, CONTENT = #{content}, WRITER = #{writer}, IMAGE=#{image}, LAST_UPDATE = SYSDATE WHERE BOARD_NO =#{boardNo}
+	</update>
+	<delete id = "delete" parameterType="int">
+	DELETE FROM BOARD WHERE BOARD_NO =#{boardNo}
+	</delete>
+	
+	<!-- 파라미터가 2개인 경우에는 @Param을 사용 -->
+	<select id="getUser" resultType="co.yedam.board.service.MemberVO"> 
+	select*from member where mid=#{id} and pass=#{pw}
+	</select>
+	
+	<select id="memberList" resultType="co.yedam.board.service.MemberVO">
+	select*from member order by 1
+	</select>
+	
+	
+	
 </mapper>

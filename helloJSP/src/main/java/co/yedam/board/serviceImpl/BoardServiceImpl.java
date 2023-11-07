@@ -2,6 +2,7 @@ package co.yedam.board.serviceImpl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.board.mapper.BoardMapper;
@@ -25,28 +26,28 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO getBoard(int boardNo) {
-		dao.updateCnt(boardNo);
-		return dao.select(boardNo);
+		mapper.updateCnt(boardNo);
+		return mapper.select(boardNo);
 	}
 
 	@Override
 	public boolean addBoard(BoardVO vo) {
-		return dao.insert(vo) == 1;
+		return mapper.insert(vo) == 1;
 	}
 
 	@Override
 	public boolean editBoard(BoardVO vo) {
-		return dao.update(vo) == 1;
+		return mapper.update(vo) == 1;
 	}
 
 	@Override
 	public boolean removeBoard(int boardNo) {
-		return dao.delete(boardNo) == 1;
+		return mapper.delete(boardNo) == 1;
 	}
 	
 	@Override
-	public MemberVO loginCheck(String id, String pw) {
-		return dao.getUser(id, pw);
+	public MemberVO loginCheck(@Param("id")String id, @Param("pw")String pw) {
+		return mapper.getUser(id, pw);
 	}
 	
 	@Override

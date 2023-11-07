@@ -18,6 +18,8 @@ import co.yedam.board.web.ModifyControl;
 import co.yedam.board.web.RemoveBoardControl;
 import co.yedam.board.web.RemoveControl;
 import co.yedam.board.web.boardFormControl;
+import co.yedam.reply.web.AddReplyCotrol;
+import co.yedam.reply.web.ReplyListControl;
 
 //url: *.do로 끝나면 전부 여기로 들어와서 실행
 public class FrontController extends HttpServlet {
@@ -54,6 +56,11 @@ public class FrontController extends HttpServlet {
 		
 		//회원관리
 		map.put("/memberList.do", new MemberControl());
+		
+		
+		//댓글목록
+		map.put("/replyList.do", new ReplyListControl());
+		map.put("/addReply.do", new AddReplyCotrol());
 	}
 	
 	//등록 -> boardForm.do->boardForm.jsp 후에 처리는 addBoard.do->BoardList.jsp에서 처리

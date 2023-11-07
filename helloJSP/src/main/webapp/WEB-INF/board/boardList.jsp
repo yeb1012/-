@@ -30,7 +30,7 @@
 				<%}else{ %>
 				<td><%=vo.getWriter()%></td>
 				<%} %>
-				<td><%=vo.getWriteDate()%></td>
+				<td><%=vo.getLastUpdate()%></td>
 			</tr>
 			<%
 			}

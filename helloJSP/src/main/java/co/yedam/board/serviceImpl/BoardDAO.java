@@ -108,7 +108,7 @@ public class BoardDAO {
 	
 	public int update(BoardVO vo) {
 		int n = 0;
-		sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ?, WRITER = ?, IMAGE=?, WRITE_DATE = SYSDATE WHERE BOARD_NO = ?";
+		sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ?, WRITER = ?, IMAGE=?, LAST_UPDATE = SYSDATE WHERE BOARD_NO = ?";
 		conn = dao.getConnection();
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -186,7 +186,7 @@ public class BoardDAO {
 	
 	
 	public List<MemberVO> member() {
-		sql = "SELECT * FROM MEMBER ORDER BY MID";
+		sql = "SELECT * FROM MEMBER ORDER BY 1";
 		conn = dao.getConnection();
 		List<MemberVO> list = new ArrayList<MemberVO>();
 		try {
