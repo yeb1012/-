@@ -26,7 +26,7 @@ public class AddReplyCotrol implements Command {
 		
 		ReplyVO vo = new ReplyVO();
 		vo.setBoardNo(Integer.parseInt(bno));
-		System.out.println("asgas" + bno);
+		//System.out.println("asgas" + bno);
 		vo.setReply(reply);
 		vo.setReplyer(replyer);
 		vo.setReplyDate(new Date());
