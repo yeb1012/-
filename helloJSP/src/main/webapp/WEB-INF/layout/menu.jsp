@@ -1,6 +1,7 @@
 <%@page import="co.yedam.board.service.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,33 +17,61 @@
 <link href="css/styles.css" rel="stylesheet" />
 </head>
 <body>
-	<%
-	String logId = (String) session.getAttribute("logId");
-	String respon = (String) session.getAttribute("respon");
-	%>
+
+	${logId },${respon }
 	<div class="d-flex" id="wrapper">
 		<!-- Sidebar-->
 		<div class="border-end bg-white" id="sidebar-wrapper">
-			<%if (logId == null) {%>
-			<div class="sidebar-heading border-bottom bg-light">로그인을 해주세요</div>
-			<%} else if(logId.equals("M001")) {%>
-			<div class="sidebar-heading border-bottom bg-light">관리자님 환영합니다</div>
-			<%} else{%>
-			<div class="sidebar-heading border-bottom bg-light">(<%=logId %>)님 환영합니다</div>
-			<%}%>
+			<c:choose>
+				<c:when test="${empty logId }">
+					<div class="sidebar-heading border-bottom bg-light">게스트입니다</div>
+				</c:when>
+				<c:when test="${logId}.equals('M001')">
+					<div class="sidebar-heading border-bottom bg-light">관리자님
+						환영합니다</div>
+				</c:when>
+				<c:otherwise>
+					<div class="sidebar-heading border-bottom bg-light">${logId}님
+						환영합니다</div>
+				</c:otherwise>
+			</c:choose>
+
+
+
+
+
 			<div class="list-group list-group-flush">
-				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="main.do">처음으로</a>
-				<%if (logId == null) {%>
-				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="loginForm.do">로그인화면</a>
-				<%} else {%>
-				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="logout.do">로그아웃</a>
-				<%}%>
-				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="boardList.do">게시글 목록</a> 
+				<a
+					class="list-group-item list-group-item-action list-group-item-light p-3"
+					href="main.do">처음으로</a>
+				<c:choose>
+					<c:when test="${empty logId}">
+						<a
+							class="list-group-item list-group-item-action list-group-item-light p-3"
+							href="loginForm.do">로그인화면</a>
+					</c:when>
+					<c:otherwise>
+						<a
+							class="list-group-item list-group-item-action list-group-item-light p-3"
+							href="boardList.do">게시글 목록</a>
+					</c:otherwise>
+				</c:choose>
+
+				<a
+					class="list-group-item list-group-item-action list-group-item-light p-3"
+					href="logout.do">로그아웃</a>
+
 				<!-- 관리자 권한을 가졌을 때만 보여주기 -->
-				<%if(respon!=null && respon.equals("Admin")){ %>
-				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="memberList.do">회원관리</a>
-				<%} %>
-				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a> 
-				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
+				<c:if test="${empty respon && respon.equals('Admin')}">
+
+					<a
+						class="list-group-item list-group-item-action list-group-item-light p-3"
+						href="memberList.do">회원관리</a>
+				</c:if>
+				<a
+					class="list-group-item list-group-item-action list-group-item-light p-3"
+					href="#!">Profile</a> <a
+					class="list-group-item list-group-item-action list-group-item-light p-3"
+					href="#!">Status</a>
 			</div>
 		</div>

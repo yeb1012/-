@@ -63,6 +63,10 @@ public class FrontController extends HttpServlet {
 		map.put("/replyList.do", new ReplyListControl());
 		map.put("/addReply.do", new AddReplyCotrol());
 		map.put("/removeReply.do", new RemoveReplyControl());
+		
+		//차트 그리기
+		map.put("/chartForm.do", new ChartFormControl());
+		map.put("/drawChart.do", new DrawChartControl());
 	}
 	
 	//등록 -> boardForm.do->boardForm.jsp 후에 처리는 addBoard.do->BoardList.jsp에서 처리

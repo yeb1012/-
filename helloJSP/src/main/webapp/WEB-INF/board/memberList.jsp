@@ -4,11 +4,11 @@
     pageEncoding="UTF-8"%>
 <%@include file="../layout/menu.jsp" %>
 <%@include file="../layout/header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:forEach var="i" begin="1" end="10" step="1">
+<p>${i}</p>
+</c:forEach>
 
-<h3>회원 목록</h3>
-	<%
-	List<MemberVO> list = (List<MemberVO>) request.getAttribute("list");
-	%>
 	<table class="table">
 		<thead>
 			<tr>
@@ -19,18 +19,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<%
-			for (MemberVO vo : list) {
-			%>
+			<c:forEach items="${list}" var ="member">
 			<tr>
-				<td><%=vo.getMid()%></td>
-				<td><%=vo.getPass()%></td>
-				<td><%=vo.getName()%></td>
-				<td><%=vo.getPhone()%></td>
+				<td>${member.mid}</td>
+				<td>${member.pass}</td>
+				<td>${member.name}</td>
+				<td>${member.phone}</td>
 			</tr>
-			<%
-			}
-			%>
+			</c:forEach>
+			
 		</tbody>
 	</table>
 

@@ -1,13 +1,17 @@
 package co.yedam.reply.web;
 
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import co.yedam.common.Command;
 import co.yedam.reply.service.ReplyService;
+import co.yedam.reply.service.ReplyVO;
 import co.yedam.reply.serviceImpl.ReplyServiceImpl;
 
 public class RemoveReplyControl implements Command {
@@ -18,18 +22,33 @@ public class RemoveReplyControl implements Command {
 		String rno = req.getParameter("rno");
 		
 		ReplyService svc = new ReplyServiceImpl();
+		ReplyVO vo = new ReplyVO();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+
+		Map<String, Object> map = new HashMap<>();
+		
 		if(svc.delReply(Integer.parseInt(rno))) {
+			
 			try {
-				req.getRequestDispatcher("WEB-INF/board/getBoard.jsp").forward(req, res);
+				map.put("retCode", "OK");
+				map.put("vo", vo);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else{
-			
+		} else {
+			try {
+				map.put("retCode", "NG");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
-		
-		
+		res.setContentType("text/json; charset=UTF-8");
+		try {
+			res.getWriter().print(gson.toJson(map));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

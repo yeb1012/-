@@ -1,6 +1,7 @@
 package co.yedam.common;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -14,7 +15,7 @@ public class MainExe {
 				DataSourceMybatis.getInstance().openSession(true);
 		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
 		
-		List<ReplyVO> list = mapper.replyList(1);
+		List<ReplyVO> list = mapper.replyList(2, 1);
 		list.forEach(vo->System.out.println(vo));
 		// vo.setReplyNo(2);
 		// vo.setBoardNo(1);
@@ -28,7 +29,8 @@ public class MainExe {
 		
 			//mapper.deleteReply(23);
 		
-		 
+		 List<Map<String, Object>> map = mapper.getReplyCountByWriter();
+		 System.out.println(map);
 		 
 			
 	}//
