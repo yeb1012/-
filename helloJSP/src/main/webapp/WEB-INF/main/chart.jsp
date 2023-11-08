@@ -14,7 +14,7 @@
 		fetch('drawChart.do')
 		.then(resolve=>resolve.json())
 		.then(result=>{
-			let dataAry =['Writer', 'Cnt'];
+			let dataAry =[['Writer', 'Cnt']];
 			result.forEach(item => {
 				console.log(result);
 				dataAry.push([item.REPLYER, item.CNT])

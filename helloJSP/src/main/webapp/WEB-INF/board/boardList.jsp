@@ -21,7 +21,7 @@ ${list }
 			<c:forEach items="${list }" var="board">
 			<tr>
 				<td>${board.boardNo}</td>
-				<td><a href="getBoard.do?bno="${board.boardNo}>${board.title}</a></td>
+				<td><a href="getBoard.do?bno=${board.boardNo}">${board.title}</a></td>
 				<td>${board.writer}</td>
 				<td><fm:formatDate value="${board.lastUpdate}" pattern="yyyy-MM-dd HH:mm:ss"></fm:formatDate></td>
 			</tr>

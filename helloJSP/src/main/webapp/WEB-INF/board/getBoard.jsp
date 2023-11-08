@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
@@ -29,7 +28,7 @@
 </style>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fm" %>	
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>	
 <jsp:include page="../layout/menu.jsp"></jsp:include>
 <jsp:include page="../layout/header.jsp"></jsp:include>
 
@@ -42,7 +41,7 @@ ${bno }
 			<th>글번호</th>
 			<td class="boardNo">${bno.boardNo}</td>
 			<th>작성일시</th>
-			<td><fm:formatDate value="${bno.writeDate}" pattern="yyyy-MM-dd HH:mm:ss"></fm:formatDate></td>
+			<td><fmt:formatDate value="${bno.writeDate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
 		</tr>
 		<tr>
 			<th>글제목</th>
@@ -74,7 +73,7 @@ ${bno }
 				type="button" value="삭제"></td>
 		</tr>
 		</c:when>
-		<c:when test="${!empty respon && respon.equals('Admin')}">
+		<c:when test="${!empty respon && respon == 'Admin'}">
 		<tr>
 			<td colspan="4"><input type="submit" value="수정"> <input
 				type="button" value="삭제"></td>
@@ -118,19 +117,23 @@ ${bno }
 	fetch('replyList.do?bno='+bno +'&page=' + pg )
 	.then(resolve => resolve.json())
 	.then(result => {
-		let ul = document.querySelector('#list');
-		if(pg<0){
-			showList(Math.ceil(result.dto.total/5));
-			//showList(page);
-			return;
+		console.log(result)
+		//let ul = document.querySelector('#list');
+		if(pg<0 || result.list.length==0){
+			page =(Math.ceil(result.dto.total/5));
+			showList(page);
+			return; //이게 마지막 페이지를 보여줘라는 뜻
 		}
+		
 		result.list.forEach(reply=>{
 			let li = makeRow(reply);
 			//ul>li 생성
 			document.querySelector('#list').append(li)
+			console.log(li);
+			
 		})
 		//page생성
-		console.log(result.dto);
+		//console.log(result.dto);
 		makePaging(result.dto);
 	})
 	.catch(err => console.log(err));
@@ -217,8 +220,7 @@ ${bno }
 				if(result.retCode=='OK'){
 					alert("success");
 					e.target.parentElement.remove();
-					
-					showList(-1);
+					showList(page);
 				}else{
 					alert('Error!!!!')
 				}
