@@ -6,7 +6,7 @@
 <jsp:include page="../layout/menu.jsp"></jsp:include>
 <jsp:include page="../layout/header.jsp"></jsp:include>
 	
-${list }	
+
 <h3>게시판 목록</h3>
 	<table class="table">
 		<thead>

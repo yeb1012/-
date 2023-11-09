@@ -32,7 +32,7 @@
 <jsp:include page="../layout/menu.jsp"></jsp:include>
 <jsp:include page="../layout/header.jsp"></jsp:include>
 
-${bno }
+
 <h3>상세화면</h3>
 <form action="modifyForm.do" name="myForm">
 	<input type="hidden" name="bno" value="${bno.boardNo}">

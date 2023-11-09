@@ -22,7 +22,7 @@ public class BoardListControl implements Command{
 		
 
 		//페이지 요청(boardList.do)->요청을 재지정(board/boardList.jsp)
-		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/board/boardList.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/board/boardList.tiles");
 		try {
 			rd.forward(req, resp);
 		} catch (Exception e) {

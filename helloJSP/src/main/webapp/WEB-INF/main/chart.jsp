@@ -17,7 +17,7 @@
 			let dataAry =[['Writer', 'Cnt']];
 			result.forEach(item => {
 				console.log(result);
-				dataAry.push([item.REPLYER, item.CNT])
+				dataAry.push([item.replyer, item.cnt])//xml쿼리문에서 ""넣어서 소문자 처리 했으면 여기도 소문자 해줘야함 대문자로 쓰면 차트 안나옴
 			})
 			console.log(dataAry);
 			var data = google.visualization.arrayToDataTable(dataAry);
