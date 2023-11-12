@@ -4,17 +4,18 @@
 <tiles-definitions>
   
   <definition name="productpage" template="/WEB-INF/listLayouts/template.jsp">
-  
+   <put-attribute name="title" value="리스트 템플릿" />
     <put-attribute name="header" value="/WEB-INF/listLayouts/header.jsp" />
     <put-attribute name="content" value="/WEB-INF/listLayouts/content.jsp" />
     <put-attribute name="footer" value="/WEB-INF/listLayouts/footer.jsp" />
   </definition>
   
   <definition name="WILDCARD:product/*" extends="productpage">
-  	<put-attribute name="content" value="/WEB-INF/product/{1}.jsp" />
+  	<put-attribute name="content" value="/WEB-INF/products/{1}.jsp" />
   </definition>
   <!-- productInfo 쓸 템플릿 -->
   <definition name="infopage" template="/WEB-INF/infoLayouts/infotemplate.jsp">
+   <put-attribute name="title" value="인포 템플릿" />
     <put-attribute name="header" value="/WEB-INF/infoLayouts/header.jsp" />
     <put-attribute name="content" value="/WEB-INF/infoLayouts/content.jsp" />
     <put-attribute name="footer" value="/WEB-INF/infoLayouts/footer.jsp" />
@@ -24,7 +25,5 @@
   	<put-attribute name="content" value="/WEB-INF/product/{1}.jsp" />
   </definition>
   
-  <definition name="WILDCARD:*/*" extends="productpage">
-  	<put-attribute name="content" value="/WEB-INF/{1}/{2}.jsp" />
-  </definition>
+  
 </tiles-definitions>

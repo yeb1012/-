@@ -1,7 +1,7 @@
-<%@page import="javax.servlet.jsp.tagext.Tag"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib uri ="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+    
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,8 +18,17 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
+     <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Shop in style</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                </div>
+            </div>
+        </header>
         <!-- Navigation-->
-        <tiles:insertAttribute name="header"></tiles:insertAttribute>
+		<tiles:insertAttribute name="header"></tiles:insertAttribute>
         <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -31,15 +40,9 @@
         </header>
         <!-- Section-->
         <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-               <tiles:insertAttribute name="content"></tiles:insertAttribute> 
-            </div>
+		<tiles:insertAttribute name="body"></tiles:insertAttribute>
         </section>
         <!-- Footer-->
-       <tiles:insertAttribute name="footer"></tiles:insertAttribute>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
     </body>
 </html>

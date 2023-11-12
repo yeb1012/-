@@ -15,12 +15,15 @@ public class ProductListControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) {
+	
+		
+	String path ="product/productList.tiles";
 	ProductService svc = new ProductServiceImpl();
 	List<ProductVO> list = svc.productList();
 	
 	req.setAttribute("list", list);
 	
-	RequestDispatcher rd = req.getRequestDispatcher("product/productList.tiles");
+	RequestDispatcher rd = req.getRequestDispatcher(path);
 	
 	try {
 		rd.forward(req, res);

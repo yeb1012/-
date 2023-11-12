@@ -7,7 +7,7 @@ public interface ProductService {
 	public List<ProductVO> productList();
 
 	//단건 조회	
-	public ProductVO getProduct(int prodCode);
+	public ProductVO getProduct(String prodCode);
 	
 	//별점 높은 순 조회
 	public List<ProductVO> selectLikeIt();

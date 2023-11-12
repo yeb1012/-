@@ -2,13 +2,14 @@
 <!DOCTYPE mapper SYSTEM "path/mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.product.mapper.ProductMapper">
 	<select id="selectList" resultType="co.yedam.product.service.ProductVO">
-		SELECT * FROM TBL_PRODUCT ORDER BY Like_It
+		SELECT * FROM TBL_PRODUCT ORDER BY LIKE_IT DESC
 	</select>
+	
 	<select id="select" resultType="co.yedam.product.service.ProductVO"
-	                    parameterType="int">
-		SELECT * FROM TBL_PRODUCT WHERE PROD_CODE=#{prodCode}
+	                    parameterType="String">
+		SELECT * FROM TBL_PRODUCT WHERE PROD_CODE = #{PRODCODE}
 	</select>
 	<select id="selectLikeIt" resultType="co.yedam.product.service.ProductVO">
-	SELECT*FROM TBL_PRODUCT ORDER BY LIKE_IT
+	SELECT*FROM TBL_PRODUCT ORDER BY LIKE_IT DESC
 	</select>
 </mapper>

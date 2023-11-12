@@ -1,5 +1,7 @@
 package co.yedam.product.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,9 +16,10 @@ public class ProductInfoControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse res) {
 		String code = req.getParameter("code");
 		ProductService svc = new ProductServiceImpl();
-		ProductVO vo = svc.getProduct(Integer.parseInt(code));
-		req.setAttribute("vo", vo);
-		
+		ProductVO vo = svc.getProduct(code);
+		req.setAttribute("code", vo);
+		List<ProductVO> list = svc.selectLikeIt();
+		req.setAttribute("list", list);
 		try {
 			req.getRequestDispatcher("product/productInfo.tiles").forward(req, res);
 		} catch (Exception e) {

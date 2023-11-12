@@ -19,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductVO getProduct(int prodCode) {
+	public ProductVO getProduct(String prodCode) {
 		
 		return mapper.select(prodCode);
 	}
